@@ -139,13 +139,14 @@ import argparse
 import requests
 def get_model(name):
     model_name = name.split("/")[-1]
+
     # check if url or name
     if name.startswith("http"):
         # download the model
         print("Downloading model from url...")
-        resp = requests.get(base+name) # making requests to server
-
-        with open(name, "wb") as f: # opening a file handler to create new file
+        resp = requests.get(name) # making requests to server
+        
+        with open(model_name, "wb") as f: # opening a file handler to create new file
                 f.write(resp.content)
 
     elif name.startswith("./"):
